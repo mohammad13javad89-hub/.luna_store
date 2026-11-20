@@ -1,0 +1,212 @@
+/* =================================
+   پنجره جزئیات سفارش LUNA
+================================= */
+
+.order-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.order-modal[hidden] {
+    display: none;
+}
+
+.order-modal-content {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 15px 50px #00000030;
+}
+
+.order-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.order-modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+#closeOrderModal {
+    background: #f5eeee;
+    color: #9b5555;
+    font-size: 18px;
+    padding: 8px 12px;
+}
+
+.order-detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 13px;
+}
+
+.order-detail-row strong {
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.order-detail-title {
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.order-product-item {
+    background: #f8f6f5;
+    padding: 13px;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.order-final-total {
+    margin-top: 20px;
+    padding: 18px;
+    background: #f5eeee;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #a87555;
+}
+
+@media (max-width: 500px) {
+
+    .order-modal-content {
+        padding: 18px;
+    }
+
+    .order-detail-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+}
+
+/* =================================
+   داشبورد آماری سفارش‌ها
+================================= */
+
+.orders-dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border: 1px solid #eee5e2;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px #0000000a;
+}
+
+.dashboard-card span {
+    color: #888;
+    font-size: 13px;
+}
+
+.dashboard-card strong {
+    font-size: 25px;
+    color: #292522;
+}
+
+.dashboard-revenue {
+    grid-column: 1 / -1;
+    background: #f8f1ef;
+}
+
+.dashboard-revenue strong {
+    color: #b47c7e;
+    font-size: 23px;
+}
+
+
+/* نمایش در موبایل */
+
+@media (max-width: 750px) {
+
+    .orders-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .orders-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =================================
+   جست‌وجو و فیلتر سفارش‌ها
+================================= */
+
+.orders-toolbar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.orders-toolbar input,
+.orders-toolbar select {
+    padding: 12px 15px;
+    border: 1px solid #eee0dd;
+    border-radius: 9px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+}
+
+.orders-toolbar input {
+    flex: 1;
+    min-width: 0;
+}
+
+.orders-toolbar input:focus,
+.orders-toolbar select:focus {
+    border-color: #c58f91;
+}
+
+@media (max-width: 600px) {
+
+    .orders-toolbar {
+        flex-direction: column;
+    }
+
+    .orders-toolbar select {
+        width: 100%;
+    }
+
+}

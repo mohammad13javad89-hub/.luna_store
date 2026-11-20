@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>نتیجه پرداخت | LUNA</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .payment-result { max-width: 560px; margin: 90px auto; padding: 36px 24px; text-align: center; background: #151515; border: 1px solid #303030; border-radius: 18px; }
+    .payment-result h1 { margin: 0 0 14px; }
+    .payment-result p { color: #bbb; line-height: 2; }
+    .payment-result a { display: inline-block; margin-top: 18px; padding: 12px 24px; border-radius: 9px; background: #7cff6b; color: #101010; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <main class="payment-result">
+    <h1 id="resultTitle">در حال بررسی نتیجه پرداخت</h1>
+    <p id="resultMessage">لطفاً چند لحظه صبر کنید.</p>
+    <a href="index.html">بازگشت به فروشگاه</a>
+  </main>
+  <script>
+    const messages = {
+      success: ['پرداخت با موفقیت انجام شد', 'پرداخت شما تأیید شد و سفارش ثبت نهایی شد.'],
+      cancelled: ['پرداخت لغو شد', 'پرداخت تکمیل نشد و سفارش شما پرداخت‌شده محسوب نمی‌شود.'],
+      failed: ['پرداخت ناموفق بود', 'درگاه پرداخت را تأیید نکرد. در صورت کسر وجه، نتیجه را از بانک و پشتیبانی درگاه پیگیری کنید.'],
+      invalid: ['درخواست نامعتبر است', 'اطلاعات بازگشت پرداخت معتبر نیست.'],
+      review: ['نیازمند بررسی', 'نتیجه پرداخت دریافت شد اما تکمیل سفارش با مشکل مواجه شد. با پشتیبانی فروشگاه تماس بگیرید.']
+    };
+    const status = new URLSearchParams(location.search).get('status');
+    const result = messages[status] || messages.invalid;
+    document.getElementById('resultTitle').textContent = result[0];
+    document.getElementById('resultMessage').textContent = result[1];
+  </script>
+</body>
+</html>

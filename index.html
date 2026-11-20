@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>LUNA | فروشگاه لباس زنانه</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- هدر سایت -->
+    <header class="header">
+      <div class="logo">LUNA</div>
+
+      <nav class="navbar">
+        <a href="#home">خانه</a>
+        <a href="#categories">دسته‌بندی‌ها</a>
+        <a href="#products">محصولات</a>
+      </nav>
+
+      <button class="cart-button" id="cartButton" type="button">
+        🛍️ سبد خرید
+        <span id="cartCount">۰</span>
+      </button>
+
+      <!-- پنجره سبد خرید -->
+      <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+          <h2>سبد خرید من</h2>
+
+          <button id="closeCart" type="button">✕</button>
+        </div>
+
+        <div id="cartItems">
+          <p>سبد خرید شما خالی است.</p>
+        </div>
+
+        <div class="cart-footer">
+          <p>
+            مجموع:
+            <span id="cartTotal">۰</span>
+            تومان
+          </p>
+
+          <button id="checkoutButton" type="button">ادامه خرید</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- بخش اصلی -->
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <p>جدیدترین استایل‌ها</p>
+
+          <h1>استایل تو، داستان توست.</h1>
+
+          <p>لباس موردعلاقه‌ات رو پیدا کن و استایل خودت رو بساز.</p>
+
+          <a href="#products" class="hero-button"> مشاهده محصولات </a>
+        </div>
+      </section>
+
+      <!-- دسته‌بندی‌ها -->
+      <section class="categories" id="categories">
+        <h2>دسته‌بندی لباس‌ها</h2>
+
+        <p>استایل موردعلاقه‌ات رو انتخاب کن.</p>
+
+        <div class="category-list">
+          <a href="#products" class="category-card">
+            <span>👗</span>
+            <h3>لباس مجلسی</h3>
+          </a>
+
+          <a href="#products" class="category-card">
+            <span>🧥</span>
+            <h3>مانتو</h3>
+          </a>
+
+          <a href="#products" class="category-card">
+            <span>👚</span>
+            <h3>لباس روزمره</h3>
+          </a>
+
+          <a href="#products" class="category-card">
+            <span>👟</span>
+            <h3>لباس اسپرت</h3>
+          </a>
+        </div>
+      </section>
+
+      <!-- محصولات -->
+      <section class="products" id="products">
+        <h2>محصولات فروشگاه</h2>
+
+        <p class="products-description">جدیدترین محصولات LUNA رو ببین.</p>
+
+        <!-- جست‌وجو و فیلتر -->
+        <div class="product-tools">
+          <input
+            type="text"
+            id="productSearch"
+            placeholder="جست‌وجوی نام لباس..."
+          />
+
+          <select id="categoryFilter">
+            <option value="all">همه دسته‌بندی‌ها</option>
+
+            <option value="formal">لباس مجلسی</option>
+
+            <option value="manteau">مانتو</option>
+
+            <option value="casual">لباس روزمره</option>
+
+            <option value="sport">لباس اسپرت</option>
+          </select>
+
+          <select id="priceSort">
+            <option value="default">مرتب‌سازی قیمت</option>
+
+            <option value="low">ارزان‌ترین</option>
+
+            <option value="high">گران‌ترین</option>
+          </select>
+        </div>
+
+        <!-- کارت‌های محصولات -->
+        <div class="product-list">
+          <!-- محصول اول: مانتو -->
+          <div class="product-card" data-category="manteau">
+            <img src="assets/manteau.svg" alt="مانتو تابستانی" />
+
+            <div class="product-info">
+              <h3>مانتو تابستانی</h3>
+
+              <p>۸۵۰,۰۰۰ تومان</p>
+
+              <button type="button">افزودن به سبد خرید</button>
+            </div>
+          </div>
+
+          <!-- محصول دوم: لباس مجلسی -->
+          <div class="product-card" data-category="formal">
+            <img src="assets/formal.svg" alt="لباس مجلسی" />
+
+            <div class="product-info">
+              <h3>لباس مجلسی</h3>
+
+              <p>۱,۵۰۰,۰۰۰ تومان</p>
+
+              <button type="button">افزودن به سبد خرید</button>
+            </div>
+          </div>
+
+          <!-- محصول سوم: لباس روزمره-->
+          <div class="product-card" data-category="casual">
+            <img src="assets/casual.svg" alt="لباس روزمره" />
+
+            <div class="product-info">
+              <h3>ست لباس روزمره</h3>
+
+              <p>۶۵۰,۰۰۰ تومان</p>
+
+              <button type="button">افزودن به سبد خرید</button>
+            </div>
+          </div>
+
+          <!-- محصول چهارم: لباس اسپرت -->
+          <div class="product-card" data-category="sport">
+            <img src="assets/sport.svg" alt="لباس اسپرت" />
+
+            <div class="product-info">
+              <h3>ست لباس اسپرت</h3>
+
+              <p>۹۵۰,۰۰۰ تومان</p>
+
+              <button type="button">افزودن به سبد خرید</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- فوتر سایت -->
+    <footer class="footer">
+      <h2>LUNA</h2>
+
+      <p>زیبایی در انتخاب توست.</p>
+
+      <p>تمامی حقوق این فروشگاه محفوظ است.</p>
+    </footer>
+
+    <!-- اتصال جاوااسکریپت -->
+    <script src="script.js"></script>
+  </body>
+</html>

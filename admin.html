@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل مدیریت | LUNA</title>
+    <link rel="stylesheet" href="orders.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Tahoma, Arial, sans-serif;
+        background: #f5f5f7;
+        color: #222;
+      }
+
+      header {
+        background: #171717;
+        color: white;
+        padding: 22px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 23px;
+      }
+
+      header a, header button {
+        color: white;
+        text-decoration: none;
+        background: #a87555;
+        padding: 11px 18px;
+        border-radius: 9px;
+      }
+
+      main {
+        width: min(1100px, 92%);
+        margin: 35px auto;
+      }
+
+      .welcome {
+        margin-bottom: 25px;
+      }
+
+      .welcome p {
+        color: #777;
+        line-height: 1.9;
+      }
+
+      .notice {
+        background: #fff7e8;
+        color: #8a5a12;
+        border-radius: 10px;
+        padding: 13px 16px;
+        line-height: 1.9;
+        font-size: 13px;
+        margin-bottom: 22px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 25px;
+      }
+
+      .stat-card,
+      .panel {
+        background: white;
+        border-radius: 14px;
+        padding: 22px;
+        box-shadow: 0 3px 15px #00000008;
+      }
+
+      .stat-card span {
+        color: #777;
+        font-size: 14px;
+      }
+
+      .stat-card strong {
+        display: block;
+        margin-top: 12px;
+        font-size: 25px;
+        overflow-wrap: anywhere;
+      }
+
+      .panel {
+        margin-bottom: 25px;
+        padding: 25px;
+      }
+
+      .panel h2 {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 22px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+        background: white;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #a87555;
+      }
+
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+        line-height: 1.9;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      .help {
+        font-size: 12px;
+        line-height: 1.9;
+        color: #777;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        border-radius: 9px;
+        padding: 12px 17px;
+        font-size: 14px;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .primary-button {
+        background: #a87555;
+        color: white;
+      }
+
+      .secondary-button {
+        background: #eee;
+        color: #333;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .preview-title {
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .image-preview {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      .preview-item {
+        width: 100px;
+        text-align: center;
+      }
+
+      .preview-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        background: #f2f2f2;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+      }
+
+      .preview-item span {
+        display: block;
+        font-size: 11px;
+        color: #777;
+        margin-top: 5px;
+        overflow-wrap: anywhere;
+      }
+
+      .products-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+
+      .products-header h2 {
+        margin: 0;
+      }
+
+      .search {
+        max-width: 280px;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 620px;
+      }
+
+      th,
+      td {
+        padding: 15px 12px;
+        text-align: right;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+        color: #777;
+        font-size: 13px;
+        font-weight: normal;
+      }
+
+      td {
+        font-size: 14px;
+      }
+
+      .product-name {
+        font-weight: bold;
+      }
+
+      .badge {
+        display: inline-block;
+        background: #f1e7df;
+        color: #80563f;
+        padding: 6px 10px;
+        border-radius: 7px;
+        font-size: 12px;
+      }
+
+      .edit-button {
+        background: #e8f0fe;
+        color: #2457a7;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+
+      .delete-button {
+        background: #fde8e8;
+        color: #b42318;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #888;
+        padding: 30px;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 650px) {
+        header {
+          padding: 20px 5%;
+        }
+
+        main {
+          margin-top: 22px;
+        }
+
+        .stats,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .full-width {
+          grid-column: auto;
+        }
+
+        .panel {
+          padding: 18px;
+        }
+
+        .search {
+          max-width: none;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>🌙 LUNA | پنل مدیریت</h1>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <a href="index.html">مشاهده فروشگاه ↗</a>
+        <button type="button" id="backupButton" class="secondary-button" hidden>دانلود پشتیبان</button>
+        <button type="button" id="logoutButton" class="secondary-button" hidden>خروج از پنل</button>
+      </div>
+    </header>
+
+    <section id="loginPanel" class="panel" style="width:min(440px,92%);margin:55px auto">
+      <h2>ورود مدیر</h2>
+      <form id="loginForm">
+        <div class="field"><label for="loginUsername">نام کاربری</label><input id="loginUsername" autocomplete="username" required maxlength="30"></div>
+        <div class="field" style="margin-top:15px"><label for="loginPassword">رمز عبور</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+        <p id="loginMessage" role="alert" style="color:#a33;line-height:1.8"></p>
+        <button class="primary-button" type="submit" id="loginButton">ورود</button>
+      </form>
+    </section>
+
+    <main id="adminApp" hidden>
+      <section class="welcome">
+        <h2>مدیریت محصولات</h2>
+        <p>محصولات فروشگاه را اضافه، ویرایش یا حذف کن.</p>
+      </section>
+
+      <div class="notice">اطلاعات محصولات و سفارش‌ها از پایگاه داده سرور خوانده می‌شوند. برای استفاده از پنل باید از طریق سرور LUNA وارد شده باشید.</div>
+
+      <section class="stats">
+        <div class="stat-card">
+          <span>تعداد محصولات</span>
+          <strong id="totalProducts">۰</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>مجموع ارزش موجودی</span>
+          <strong id="inventoryValue">۰ تومان</strong>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 id="formTitle">➕ افزودن محصول جدید</h2>
+
+        <form id="productForm">
+          <input type="hidden" id="productId" />
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="productName">نام محصول</label>
+              <input
+                type="text"
+                id="productName"
+                placeholder="مثلاً مانتو تابستانی"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="productPrice">قیمت به تومان</label>
+              <input
+                type="number"
+                id="productPrice"
+                min="0"
+                step="1"
+                placeholder="850000"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="productCategory">دسته‌بندی</label>
+              <select id="productCategory" required>
+                <option value="manteau">مانتو</option>
+                <option value="formal">لباس مجلسی</option>
+                <option value="casual">لباس روزمره</option>
+                <option value="sport">لباس اسپرت</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="productStock">تعداد موجودی</label>
+              <input
+                type="number"
+                id="productStock"
+                min="0"
+                step="1"
+                value="1"
+                required
+              />
+            </div>
+
+            <div class="field full-width">
+              <label for="productImage">آدرس عکس اصلی محصول</label>
+              <input
+                type="text"
+                id="productImage"
+                placeholder="assets/products/manteau-1.jpg"
+              />
+              <span class="help">این عکس در کارت محصول فروشگاه نیز نمایش داده می‌شود.</span>
+              <input type="file" id="mainImageFile" accept="image/jpeg,image/png,image/webp" />
+              <span class="help">یا تصویر را از دستگاه انتخاب کنید (JPG، PNG، WEBP تا ۴ مگابایت).</span>
+            </div>
+
+            <div class="field full-width">
+              <label for="productImages">آدرس عکس‌های بیشتر</label>
+              <textarea
+                id="productImages"
+                placeholder="assets/products/manteau-2.jpg&#10;assets/products/manteau-3.jpg"
+              ></textarea>
+              <span class="help">هر آدرس را در یک خط بنویس؛ یا چند تصویر را از دستگاه انتخاب کن.</span>
+              <input type="file" id="galleryImageFiles" accept="image/jpeg,image/png,image/webp" multiple />
+            </div>
+
+            <div class="field full-width">
+              <label for="productDescription">توضیحات محصول</label>
+              <textarea
+                id="productDescription"
+                placeholder="جنس پارچه، مدل، نحوه شست‌وشو و سایر اطلاعات..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="preview-title">پیش‌نمایش تصاویر</div>
+          <div class="image-preview" id="imagePreview"></div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-button" id="submitButton">
+              ذخیره محصول
+            </button>
+
+            <button
+              type="button"
+              class="secondary-button"
+              id="cancelEdit"
+              hidden
+            >
+              انصراف از ویرایش
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="products-header">
+          <h2>📦 فهرست محصولات</h2>
+
+          <input
+            type="search"
+            id="productSearch"
+            class="search"
+            placeholder="جست‌وجوی محصول..."
+          />
+        </div>
+
+        <!-- جست‌وجو و فیلتر سفارش‌ها -->
+
+        <div class="orders-toolbar">
+          <input
+            type="search"
+            id="orderSearch"
+            placeholder="جست‌وجوی نام، شماره تماس یا سفارش..."
+          />
+
+          <select id="orderStatusFilter">
+            <option value="all">تمام سفارش‌ها</option>
+
+            <option value="در انتظار پرداخت">در انتظار پرداخت</option>
+
+            <option value="در حال آماده‌سازی">در حال آماده‌سازی</option>
+
+            <option value="ارسال‌شده">ارسال‌شده</option>
+
+            <option value="تحویل‌شده">تحویل‌شده</option>
+
+            <option value="لغوشده">لغوشده</option>
+          </select>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>نام محصول</th>
+                <th>دسته‌بندی</th>
+                <th>قیمت</th>
+                <th>موجودی</th>
+                <th>تصاویر</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+
+            <tbody id="productTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- داشبورد آماری سفارش‌ها -->
+
+      <section class="orders-dashboard">
+        <div class="dashboard-card">
+          <span>کل سفارش‌ها</span>
+
+          <strong id="totalOrders">۰</strong>
+        </div>
+
+        <div class="dashboard-card">
+          <span>در انتظار پرداخت</span>
+
+          <strong id="pendingOrders">۰</strong>
+        </div>
+
+        <div class="dashboard-card">
+          <span>در حال پردازش</span>
+
+          <strong id="processingOrders">۰</strong>
+        </div>
+
+        <div class="dashboard-card">
+          <span>تحویل‌شده</span>
+
+          <strong id="deliveredOrders">۰</strong>
+        </div>
+
+        <div class="dashboard-card dashboard-revenue">
+          <span>مجموع مبلغ سفارش‌ها</span>
+
+          <strong id="totalRevenue">۰ تومان</strong>
+        </div>
+      </section>
+
+      <!-- مدیریت سفارش‌ها -->
+
+      <section class="panel" id="ordersSection">
+        <div class="products-header">
+          <h2>🛍️ مدیریت سفارش‌ها</h2>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>شماره سفارش</th>
+                <th>نام مشتری</th>
+                <th>شماره تماس</th>
+                <th>مبلغ سفارش</th>
+                <th>وضعیت</th>
+                <th>عملیات</th>
+              </tr>
+            </thead>
+
+            <tbody id="ordersTable"></tbody>
+          </table>
+        </div>
+
+        <div id="ordersEmpty" class="empty-state" hidden>
+          هنوز هیچ سفارشی ثبت نشده است.
+        </div>
+      </section>
+
+      <!-- پنجره جزئیات سفارش -->
+
+      <div class="order-modal" id="orderModal" hidden>
+        <div class="order-modal-content">
+          <div class="order-modal-header">
+            <h2>جزئیات سفارش</h2>
+
+            <button type="button" id="closeOrderModal">✕</button>
+          </div>
+
+          <div id="orderDetailsContent"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="admin.js" defer></script>
+
+  </body>
+</html>
